@@ -1,0 +1,16 @@
+-- Copy this file to local_lsp.lua and uncomment/add servers as needed
+return {
+  -- "jdtls",        -- Java
+  "pyright",      -- Python
+  "ruff",         -- Python Linter/Formatter
+  "bashls",       -- Bash
+  "fish_lsp",     -- Fish
+  "marksman",     -- Markdown
+  -- "ts_ls",        -- TypeScript/JS
+  -- "eslint",       -- ESLint
+  "yamlls",       -- YAML
+  "html",         -- HTML
+  "cssls",        -- CSS
+  "jsonls",       -- JSON
+  "dockerls",     -- Docker
+}
