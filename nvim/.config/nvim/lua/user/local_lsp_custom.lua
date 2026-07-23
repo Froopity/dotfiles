@@ -1,3 +1,0 @@
-return {
-  'cfn_lsp',
-}
