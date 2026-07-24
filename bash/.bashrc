@@ -1,5 +1,27 @@
 [[ $- != *i* ]] && return
 
+# Shell behavior
+shopt -s checkwinsize
+shopt -s globstar
+shopt -s cdspell
+shopt -s no_empty_cmd_completion
+
+# History
+HISTCONTROL=ignoreboth
+HISTSIZE=100000
+HISTFILESIZE=200000
+export HISTTIMEFORMAT='%F %T  '
+shopt -s histappend
+
+# Tab completion for git, systemctl, etc.
+if ! shopt -oq posix; then
+  if [[ -f /usr/share/bash-completion/bash_completion ]]; then
+    source /usr/share/bash-completion/bash_completion
+  elif [[ -f /etc/bash_completion ]]; then
+    source /etc/bash_completion
+  fi
+fi
+
 # Colored man pages via bat, falls back to the default pager when unavailable
 if command -v bat >/dev/null 2>&1; then
   bat_cmd=bat
@@ -15,6 +37,48 @@ if [[ -n $bat_cmd ]]; then
   export MANPAGER="sh -c 'col -bx | $bat_cmd -l man -p'"
 fi
 unset bat_cmd
+
+# Color everywhere else that supports it
+export LESS='-R -F -X'
+command -v dircolors >/dev/null 2>&1 && eval "$(dircolors -b)"
+export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+
+# Prompt: full path with early segments shortened to the current one, git
+# branch if inside a repo, input line on its own row.
+__prompt_pwd() {
+  local dir=${PWD/#$HOME/\~}
+  local prefix=
+  if [[ $dir == /* ]]; then
+    prefix=/
+    dir=${dir#/}
+  fi
+
+  local IFS=/
+  local -a parts=($dir)
+  local last=$(( ${#parts[@]} - 1 ))
+  local out= seg i
+
+  for i in "${!parts[@]}"; do
+    seg=${parts[$i]}
+    if [[ $i -eq $last ]]; then
+      out+="$seg"
+    elif [[ $seg == .* ]]; then
+      out+="${seg:0:2}/"
+    else
+      out+="${seg:0:1}/"
+    fi
+  done
+
+  printf '%s%s' "$prefix" "$out"
+}
+
+__prompt_git() {
+  local branch
+  branch=$(git symbolic-ref --quiet --short HEAD 2>/dev/null) || branch=$(git rev-parse --short HEAD 2>/dev/null) || return
+  printf ' (%s)' "$branch"
+}
+
+PS1='\[\e[1;34m\]$(__prompt_pwd)\[\e[0m\]\[\e[90m\]$(__prompt_git)\[\e[0m\]\n\$ '
 
 alias reload='exec bash'
 
@@ -76,8 +140,6 @@ alias gb='g branch'
 alias gp='g push'
 alias gpl='g pull'
 
-export HISTTIMEFORMAT='%F %T  '
-
 config() {
   local dotfiles=~/dotfiles/bash
 
@@ -116,5 +178,10 @@ if [[ -f ~/.config/fzf-git.sh/fzf-git.sh ]]; then
   source ~/.config/fzf-git.sh/fzf-git.sh
 fi
 
-bind '"\e[3;5~": kill-word'         # Ctrl-Delete
-bind '"\C-h": backward-kill-word'   # Ctrl-Backspace (plain Backspace usually sends \x7f, not \C-h)
+# Readline / key bindings
+bind '"\e[3;5~": kill-word'              # Ctrl-Delete
+bind '"\C-h": backward-kill-word'        # Ctrl-Backspace (plain Backspace usually sends \x7f, not \C-h)
+bind '"\e[A": history-search-backward'   # Up: filter history by what's typed so far
+bind '"\e[B": history-search-forward'    # Down: same, forward
+bind 'set completion-ignore-case on'
+bind 'set show-all-if-ambiguous on'
