@@ -10,11 +10,7 @@ return {
       vim.env.PATH = mason_bin .. ':' .. vim.env.PATH
     end
 
-    local ok, servers = pcall(require, 'user.local_lsp')
-    if not ok then
-      vim.notify('LSP: failed to load user.local_lsp: ' .. servers, vim.log.levels.ERROR)
-      return
-    end
+    local servers = require('user.langs').lsp_servers()
 
     local _, custom_servers = pcall(require, 'user.local_lsp_custom')
     if type(custom_servers) ~= 'table' then custom_servers = {} end

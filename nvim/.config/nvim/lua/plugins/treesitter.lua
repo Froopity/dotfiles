@@ -3,10 +3,12 @@ return {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
     config = function()
-      require("nvim-treesitter.install").install({ "bash", "fish", "lua", "markdown", "python"})
+      local parsers, filetypes = require('user.langs').treesitter_parsers()
+
+      require("nvim-treesitter.install").install(parsers)
 
       vim.api.nvim_create_autocmd("FileType", {
-        pattern = { "bash", "fish", "lua", "markdown", "python", "sh"},
+        pattern = filetypes,
         callback = function()
           pcall(vim.treesitter.start)
         end,
