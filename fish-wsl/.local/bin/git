@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# Shadows /usr/bin/git on PATH. Under /mnt/* paths, native (Linux) git is
+# painfully slow over the 9p filesystem, so dispatch to Windows git.exe there.
+case "$PWD" in
+  /mnt/*) exec git.exe "$@" ;;
+  *) exec /usr/bin/git "$@" ;;
+esac
