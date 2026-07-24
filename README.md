@@ -36,3 +36,15 @@ After stowing, install plugins with fisher:
 curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source
 fisher update
 ```
+
+## nvim
+
+External tools required:
+
+```
+ripgrep
+tree-sitter-cli (requires npm)
+```
+
+Create the language config file by running `:LangSync` in nvim. Uncomment any required languages.
+
