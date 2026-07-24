@@ -1,3 +1,6 @@
 [submodule "fish/.config/fish/fzf-git.sh"]
 	path = fish/.config/fish/fzf-git.sh
 	url = https://github.com/junegunn/fzf-git.sh.git
+[submodule "bash/.config/fzf-git.sh"]
+	path = bash/.config/fzf-git.sh
+	url = https://github.com/junegunn/fzf-git.sh.git
