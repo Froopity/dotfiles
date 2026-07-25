@@ -37,6 +37,10 @@ curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fi
 fisher update
 ```
 
+### Machine-local config
+
+`conf.d/local.fish` is gitignored (in any package) and auto-sourced by fish.
+
 ## nvim
 
 External tools required:

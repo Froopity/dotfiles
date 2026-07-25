@@ -1,2 +1,3 @@
 lazy-lock.json
 /nvim/.config/nvim/lua/user/local_langs.lua
+**/conf.d/local.fish
