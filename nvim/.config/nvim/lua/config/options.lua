@@ -52,13 +52,20 @@ vim.o.completeopt = 'fuzzy,menuone,noselect,popup'
 vim.o.wildoptions = 'fuzzy,pum'
 vim.o.wildmode = 'noselect:lastused,full'
 
--- Show the cmdline completion pum as you type, not just on <Tab>
+-- Show the cmdline completion pum as you type, not just on <Tab>.
+-- Skip shell commands (:!, :%!) since completing them scans $PATH and hangs.
 vim.api.nvim_create_autocmd('CmdlineChanged', {
   pattern = { ':', '/', '?' },
   callback = function()
+    if vim.fn.getcmdcompltype() == 'shellcmd' then
+      return
+    end
     vim.fn.wildtrigger()
   end,
 })
+
+-- Cap the cmdline/completion popup menu height
+vim.o.pumheight = 10
 
 -- Highlight when yanking text
 vim.api.nvim_create_autocmd('TextYankPost', {
