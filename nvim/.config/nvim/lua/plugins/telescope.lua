@@ -107,6 +107,10 @@ return {
         path_display = { "filename_first" },
         file_ignore_patterns = { "%.git/" }, -- Use %. to escape the dot in Lua patterns
         sorting_strategy = "ascending",
+        -- treesitter parsers delay closing telescope. normal syntax highlighting is fine.
+        preview = {
+          treesitter = false,
+        },
         layout_strategy = 'vertical',
         layout_config = {
           vertical = {
