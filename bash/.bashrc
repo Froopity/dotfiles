@@ -186,7 +186,7 @@ bind '"\e[B": history-search-forward'    # Down: same, forward
 bind 'set completion-ignore-case on'
 bind 'set show-all-if-ambiguous on'
 
-if [ ! -f ~/.bash_local ]; then
+if [ -f ~/.bash_local ]; then
   source ~/.bash_local
 fi
 
