@@ -151,8 +151,10 @@ if status is-interactive
     zoxide init fish | source
 
     function __ssh_agent_is_started -d "check if ssh agent is already started"
-        if begin; test -f $SSH_ENV; and test -z "$SSH_AGENT_PID"; end
-            source $SSH_ENV > /dev/null
+        if begin
+                test -f $SSH_ENV; and test -z "$SSH_AGENT_PID"
+            end
+            source $SSH_ENV >/dev/null
         end
 
         if test -z "$SSH_AGENT_PID"
@@ -164,9 +166,9 @@ if status is-interactive
     end
 
     function __ssh_agent_start -d "start a new ssh agent"
-        ssh-agent -c | sed 's/^echo/#echo/' > $SSH_ENV
+        ssh-agent -c | sed 's/^echo/#echo/' >$SSH_ENV
         chmod 600 $SSH_ENV
-        source $SSH_ENV > /dev/null
+        source $SSH_ENV >/dev/null
         true
     end
 
