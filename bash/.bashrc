@@ -103,6 +103,10 @@ if command -v eza >/dev/null 2>&1; then
       eza -al --color=always --group-directories-first --icons=always --tree --level 2 "$@"
     fi
   }
+else
+  alias ls='ls -A'
+  alias ll='ls -l'
+  alias la='ls -lA'
 fi
 
 # Common use
