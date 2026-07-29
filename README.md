@@ -41,6 +41,17 @@ fisher update
 
 `conf.d/local.fish` is gitignored (in any package) and auto-sourced by fish.
 
+## git
+
+
+- `.config/git/config` common settings
+- `.local/bin/git-editor` tries nvim then vim
+- `.local/bin/git` uses git.exe under wsl paths
+
+```
+stow bash git
+```
+
 ## nvim
 
 External tools required:
