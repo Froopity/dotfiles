@@ -171,6 +171,9 @@ config() {
 
 alias profile=config
 
+# Set up ripgrep config path
+export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/config"
+
 # Directories to always skip in Ctrl-T/Alt-C search (matched by name, not full path).
 export FZF_DEFAULT_OPTS="--walker-skip=.git,node_modules,.venv,venv,__pycache__,dist,build,target,.cache"
 export FZF_CTRL_T_OPTS="--walker=file,dir,hidden"

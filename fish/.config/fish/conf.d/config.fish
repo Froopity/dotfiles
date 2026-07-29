@@ -9,6 +9,8 @@ if status is-interactive
     set -x MANROFFOPT -c
     set -x MANPAGER "sh -c 'col -bx | $bat_cmd -l man -p'"
 
+    set -x RIPGREP_CONFIG_PATH ~/.config/ripgrep/config
+
     fish_add_path ~/.local/bin
 
     # franciscolourenco/done notification settings

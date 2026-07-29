@@ -19,3 +19,32 @@ vim.api.nvim_create_user_command(
   end,
   {}
 )
+
+-- Build a .rgignore from the current repo's .gitignore.
+vim.api.nvim_create_user_command(
+  'Rgignore',
+  function(_)
+    local root = vim.fn.systemlist('git rev-parse --show-toplevel')[1]
+    if vim.v.shell_error ~= 0 or not root or root == '' then
+      vim.notify('Not inside a git repository', vim.log.levels.ERROR)
+      return
+    end
+
+    local rgignore = root .. '/.rgignore'
+    if vim.fn.filereadable(rgignore) == 1 then
+      vim.cmd('edit ' .. vim.fn.fnameescape(rgignore))
+      return
+    end
+
+    local gitignore = root .. '/.gitignore'
+    local lines = {}
+    if vim.fn.filereadable(gitignore) == 1 then
+      lines = vim.fn.readfile(gitignore)
+    end
+
+    vim.cmd('edit ' .. vim.fn.fnameescape(rgignore))
+    vim.api.nvim_buf_set_lines(0, 0, -1, false, lines)
+    vim.bo.modified = true
+  end,
+  {}
+)

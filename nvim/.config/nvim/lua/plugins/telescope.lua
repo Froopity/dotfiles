@@ -148,13 +148,12 @@ return {
       },
       pickers = {
         find_files = {
-          -- no_ignore = true,
           hidden = true,
           follow = true,
         },
         live_grep = {
           additional_args = function()
-            return { "--follow" }
+            return { "--hidden", "--follow", "--no-ignore-vcs" }
           end
         },
         buffers = {

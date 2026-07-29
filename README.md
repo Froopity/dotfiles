@@ -41,6 +41,7 @@ fisher update
 
 `conf.d/local.fish` is gitignored (in any package) and auto-sourced by fish.
 
+<<<<<<< HEAD
 ## git
 
 
@@ -52,6 +53,16 @@ fisher update
 stow bash git
 ```
 
+=======
+## ripgrep
+
+```
+stow ripgrep
+```
+
+Set some default excludes like `.git`, `node_modules`, etc. Requires `RIPGREP_CONFIG_PATH` to be set (done automatically with `fish` or `bash` unit)
+
+>>>>>>> d0457b7 (Better rg settings for hidden/gitignored files)
 ## nvim
 
 External tools required:
