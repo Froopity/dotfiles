@@ -118,7 +118,7 @@ if status is-interactive
     alias tb='nc termbin.com 9999'
 
     # Auto-picks git.exe under Windows-mounted paths (/mnt/*), otherwise native git
-    function g
+    function g --wraps git
         if string match -q '/mnt/*' -- $PWD
             git.exe $argv
         else
