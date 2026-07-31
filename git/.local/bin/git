@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-# Shadows /usr/bin/git on PATH. Under /mnt/* paths, native (Linux) git is
-# painfully slow over the 9p filesystem, so dispatch to Windows git.exe there.
+# Shadows /usr/bin/git on PATH. Under /mnt/c/* paths, Linux git is
+# painfully slow, so use git.exe there.
 case "$PWD" in
-  /mnt/*) exec git.exe "$@" ;;
+  /mnt/c/*) exec git.exe "$@" ;;
   *) exec /usr/bin/git "$@" ;;
 esac

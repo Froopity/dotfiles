@@ -117,15 +117,8 @@ if status is-interactive
     alias egrep='egrep --color=auto'
     alias tb='nc termbin.com 9999'
 
-    # Auto-picks git.exe under Windows-mounted paths (/mnt/*), otherwise native git
-    function g --wraps git
-        if string match -q '/mnt/*' -- $PWD
-            git.exe $argv
-        else
-            /usr/bin/git $argv
-        end
-    end
-
+    # Git aliases
+    alias g="git"
     alias gs="g status"
     alias gl="g log"
     alias ga="g add"

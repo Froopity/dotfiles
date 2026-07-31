@@ -127,15 +127,8 @@ alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 alias tb='nc termbin.com 9999'
 
-# Auto-picks git.exe under Windows-mounted paths (/mnt/*), otherwise native git
-g() {
-  if [[ $PWD == /mnt/* ]]; then
-    git.exe "$@"
-  else
-    /usr/bin/git "$@"
-  fi
-}
-
+# Git aliases
+alias g='git'
 alias gs='g status'
 alias gl='g log'
 alias ga='g add'
