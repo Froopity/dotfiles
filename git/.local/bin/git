@@ -1,7 +1,13 @@
 #!/usr/bin/env bash
 # Shadows /usr/bin/git on PATH. Under /mnt/c/* paths, Linux git is
 # painfully slow, so use git.exe there.
-case "$PWD" in
+#
+# Uses `pwd -P` instead of $PWD: $PWD is just an inherited env var, so a
+# caller that chdir()s without re-exporting it (e.g. Neovim spawning jobs
+# via vim.uv.spawn) leaves it stale, which previously misrouted unrelated
+# git invocations to git.exe based on wherever the parent process last had
+# PWD set.
+case "$(pwd -P)" in
   /mnt/c/*) exec git.exe "$@" ;;
   *) exec /usr/bin/git "$@" ;;
 esac
