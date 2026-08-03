@@ -176,6 +176,18 @@ eval "$(fzf --bash)"
 
 if [[ -f ~/.config/fzf-git.sh/fzf-git.sh ]]; then
   source ~/.config/fzf-git.sh/fzf-git.sh
+
+  # fzf-git.sh's key-binding macros (e.g. Ctrl-G Ctrl-B) use \C-h internally,
+  # relying on its *default* meaning of backward-delete-char to splice the
+  # selected item back into the command line. We rebind \C-h to
+  # backward-kill-word below for Ctrl-Backspace, which hijacks those macros
+  # and corrupts the pasted-back text (truncating on word boundaries like
+  # hyphens). Re-bind the widgets here using \C-? (DEL) instead, which still
+  # means backward-delete-char and isn't remapped.
+  if [[ -n ${BASH_VERSION:-} ]] && declare -f __fzf_git_init > /dev/null; then
+    eval "$(declare -f __fzf_git_init | sed 's/\\C-h/\\C-?/g')"
+    __fzf_git_init files branches tags remotes hashes stashes lreflogs each_ref worktrees '?list_bindings'
+  fi
 fi
 
 # Readline / key bindings
