@@ -1,13 +1,25 @@
 #!/usr/bin/env bash
 # Shadows /usr/bin/git on PATH. Under /mnt/c/* paths, Linux git is
-# painfully slow, so use git.exe there.
+# painfully slow, so use git.exe there -- but only when stdout is a real
+# terminal (i.e. a human is reading the output right now).
+#
+# git.exe emits Windows-style paths (C:/...) for things like
+# `rev-parse --show-toplevel`, which is not a valid Linux path. Anything
+# that captures git's output and feeds it back into a filesystem call --
+# bash command substitution followed by `cd`, or a tool like Neovim
+# spawning git as a job and reusing the reported toplevel as a cwd --
+# breaks the moment it gets a Windows path where a POSIX one is expected
+# (diffview.nvim hit exactly this: "Failed to spawn job!" because
+# chdir("C:/...") isn't a real directory on the Linux side). A real tty
+# on stdout means nothing downstream is parsing the path back out, so
+# the format mismatch is harmless there.
 #
 # Uses `pwd -P` instead of $PWD: $PWD is just an inherited env var, so a
 # caller that chdir()s without re-exporting it (e.g. Neovim spawning jobs
 # via vim.uv.spawn) leaves it stale, which previously misrouted unrelated
 # git invocations to git.exe based on wherever the parent process last had
 # PWD set.
-case "$(pwd -P)" in
-  /mnt/c/*) exec git.exe "$@" ;;
-  *) exec /usr/bin/git "$@" ;;
-esac
+if [ -t 1 ] && [[ "$(pwd -P)" == /mnt/c/* ]]; then
+  exec git.exe "$@"
+fi
+exec /usr/bin/git "$@"
