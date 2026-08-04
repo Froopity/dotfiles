@@ -1,5 +1,11 @@
 [[ $- != *i* ]] && return
 
+# Machine-local config (PATH additions, etc.) — must load before anything
+# below that depends on it, e.g. the fzf setup expecting fzf on PATH.
+if [ -f ~/.bash_local ]; then
+  source ~/.bash_local
+fi
+
 # Shell behavior
 shopt -s checkwinsize
 shopt -s globstar
@@ -197,8 +203,4 @@ bind '"\e[A": history-search-backward'   # Up: filter history by what's typed so
 bind '"\e[B": history-search-forward'    # Down: same, forward
 bind 'set completion-ignore-case on'
 bind 'set show-all-if-ambiguous on'
-
-if [ -f ~/.bash_local ]; then
-  source ~/.bash_local
-fi
 
