@@ -120,6 +120,7 @@ if status is-interactive
     # Git aliases
     alias g="git"
     alias gs="g status"
+    alias gw="g switch"
     alias gl="g log"
     alias ga="g add"
     alias gc="g commit"
