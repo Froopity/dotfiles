@@ -179,4 +179,24 @@ if status is-interactive
 
     fish_ssh_agent
 
+    # Audio handling
+    function strip-audio --description 'Extract the audio track from a video file as WAV'
+        if test (count $argv) -lt 1
+            echo "Usage: strip-audio <input video> [output.wav]" >&2
+            return 1
+        end
+
+        set -l input $argv[1]
+        set -l output $argv[2]
+        if test -z "$output"
+            set output (path change-extension wav $input)
+        end
+
+        ffmpeg -i $input -vn -acodec pcm_s16le $output
+    end
+
+    alias spleet="spleet2"
+    alias spleet2="demucs --two-stems=vocals"
+    alias spleet4="demucs"
+
 end
