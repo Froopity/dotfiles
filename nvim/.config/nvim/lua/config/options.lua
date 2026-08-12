@@ -75,5 +75,18 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
+-- The onehalf colorscheme's diffview.nvim integration leaves these hunk
+-- highlight groups empty, so diffs render with no add/change/delete colors.
+-- Reapply on every ColorScheme change (registered before the initial
+-- `colorscheme` call below so it also catches that first firing).
+local function fix_diffview_hl()
+  vim.api.nvim_set_hl(0, 'DiffviewDiffAdd', { link = 'DiffAdd' })
+  vim.api.nvim_set_hl(0, 'DiffviewDiffDelete', { link = 'DiffDelete' })
+  vim.api.nvim_set_hl(0, 'DiffviewDiffChange', { link = 'DiffChange' })
+  vim.api.nvim_set_hl(0, 'DiffviewDiffText', { link = 'DiffText' })
+end
+vim.api.nvim_create_autocmd('ColorScheme', { callback = fix_diffview_hl })
+
 -- Set colorscheme
 vim.cmd [[colorscheme onehalfdark]]
+fix_diffview_hl()
