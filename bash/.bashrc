@@ -136,7 +136,8 @@ alias tb='nc termbin.com 9999'
 # Git aliases
 alias g='git'
 alias gs='g status'
-alias gw='g switch'
+alias gt="g switch"
+alias gd="g diff"
 alias gl='g log'
 alias ga='g add'
 alias gc='g commit'
