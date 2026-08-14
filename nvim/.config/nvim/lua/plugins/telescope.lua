@@ -134,6 +134,7 @@ return {
             ["<C-s>"] = diff_vsplit,
             ["<C-t>"] = action_layout.toggle_preview,
             ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
+            ["<C-w>"] = actions.insert_original_cword,
           },
           n = {
             ["<C-k>"] = actions.move_selection_previous,
@@ -145,6 +146,7 @@ return {
             ["<C-s>"] = diff_vsplit,
             ["<C-t>"] = action_layout.toggle_preview,
             ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
+            ["<C-w>"] = actions.insert_original_cword,
           },
         },
       },
