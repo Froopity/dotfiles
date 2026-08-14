@@ -133,6 +133,7 @@ return {
             ["<C-l>"] = actions.preview_scrolling_right,
             ["<C-s>"] = diff_vsplit,
             ["<C-t>"] = action_layout.toggle_preview,
+            ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
           },
           n = {
             ["<C-k>"] = actions.move_selection_previous,
@@ -143,6 +144,7 @@ return {
             ["<C-l>"] = actions.preview_scrolling_right,
             ["<C-s>"] = diff_vsplit,
             ["<C-t>"] = action_layout.toggle_preview,
+            ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
           },
         },
       },
