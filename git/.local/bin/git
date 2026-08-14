@@ -10,6 +10,10 @@ esac
 # pwd -P, not $PWD: a chdir()ing caller that doesn't re-export it (e.g.
 # Neovim jobs) leaves it stale.
 if [[ "$(pwd -P)" == /mnt/c/* ]]; then
-  exec git.exe "$@"
+  # git.exe's global core.autocrlf=true smudges LF->CRLF on show/diff output,
+  # which desyncs from WSL git's LF-only blobs and breaks tools (gitsigns)
+  # that byte-match diff output against buffer content. Force it off here so
+  # git.exe is a transparent, faster substitute for /usr/bin/git.
+  exec git.exe -c core.autocrlf=false "$@"
 fi
 exec /usr/bin/git "$@"
