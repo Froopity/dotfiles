@@ -23,6 +23,7 @@ return {
       desc = 'Toggle Diffview'
     },
     { '<leader>hm', '<cmd>DiffviewOpen main..HEAD<CR>', desc = 'Diff from main' },
-    { '<leader>hf', '<cmd>DiffviewFileHistory %',       desc = 'Current file history' },
+    { '<leader>hf', '<cmd>DiffviewFileHistory %<CR>',   desc = 'Current file history' },
+    { '<leader>hF', '<cmd>DiffviewFileHistory<CR>',     desc = 'Current file history' },
   },
 }
