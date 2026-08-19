@@ -87,6 +87,14 @@ local function fix_diffview_hl()
 end
 vim.api.nvim_create_autocmd('ColorScheme', { callback = fix_diffview_hl })
 
+-- Match tmux's selected-tab green (`window-status-current-style` in .tmux.conf)
+-- by reusing the colorscheme's own green swatch for the statusline background.
+local function fix_statusline_hl()
+  vim.api.nvim_set_hl(0, 'StatusLine', { fg = 'black', bg = '#98c379' })
+end
+vim.api.nvim_create_autocmd('ColorScheme', { callback = fix_statusline_hl })
+
 -- Set colorscheme
 vim.cmd [[colorscheme onehalfdark]]
 fix_diffview_hl()
+fix_statusline_hl()
