@@ -51,10 +51,15 @@ vim.api.nvim_create_autocmd("FileType", { -- Unmap enter when in QuickFix
   end,
 })
 
+-- Switch between buffers easily
+-- Overrides top/bottom line jump
+vim.keymap.set('n', 'H', "<CMD>bprevious<CR>", { desc = "Previous buffer" })
+vim.keymap.set('n', 'L', "<CMD>bnext<CR>", { desc = "Next buffer" })
+
 -- Actions on entire buffer
-vim.keymap.set('n', ' ya', "mqggyG'q", { desc = "Yank entire buffer" })
-vim.keymap.set('n', ' da', 'gg"_dG', { desc = "Delete entire buffer without yanking" })
-vim.keymap.set('n', ' gqa', "mqgggqG'q", { desc = "Format entire buffer" })
+vim.keymap.set('n', '<leader>ya', "mqggyG'q", { desc = "Yank entire buffer" })
+vim.keymap.set('n', '<leader>da', 'gg"_dG', { desc = "Delete entire buffer without yanking" })
+vim.keymap.set('n', '<leader>gqa', "mqgggqG'q", { desc = "Format entire buffer" })
 
 -- LSP keymaps
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic error under cursor' })
@@ -101,13 +106,13 @@ local function delete_qf_items()
     -- Go back to normal
     vim.api.nvim_feedkeys(
       vim.api.nvim_replace_termcodes(
-        '<esc>',         -- what to escape
-        true,            -- Vim leftovers
-        false,           -- Also replace `<lt>`?
-        true             -- Replace keycodes (like `<esc>`)?
+        '<esc>', -- what to escape
+        true,    -- Vim leftovers
+        false,   -- Also replace `<lt>`?
+        true     -- Replace keycodes (like `<esc>`)?
       ),
-      'x',               -- Mode flag
-      false              -- Should be false, since we already `nvim_replace_termcodes()`
+      'x',       -- Mode flag
+      false      -- Should be false, since we already `nvim_replace_termcodes()`
     )
   end
 

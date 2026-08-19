@@ -85,6 +85,19 @@ local diff_vsplit = function(prompt_bufnr)
   end
 end
 
+local git_diff = function(opts)
+  local pickers = require "telescope.pickers"
+  local finders = require "telescope.finders"
+  local conf = require("telescope.config").values
+  local list = vim.fn.systemlist('git diff --name-only main')
+
+  pickers.new(opts, {
+    prompt_title = "git diff",
+    finder = finders.new_table { results = list },
+    sorter = conf.generic_sorter(opts)
+  }):find()
+end
+
 return {
   'nvim-telescope/telescope.nvim',
   version = '*', -- Recommended for Neovim 0.11+ compatibility
@@ -206,7 +219,7 @@ return {
     vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
     vim.keymap.set('n', '<leader>fg', menufacture.live_grep, { desc = 'Telescope live grep' })
     vim.keymap.set('n', '<leader>/', builtin.current_buffer_fuzzy_find, { desc = 'Telescope live buffer fuzzy' })
-    vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
+    vim.keymap.set('n', '<leader>fh', git_diff, { desc = 'Telescope diff since main' })
     vim.keymap.set('n', '<leader>fn', function()
       builtin.find_files({ cwd = vim.fn.expand('~/.config/nvim') })
     end, { desc = 'Telescope find nvim files' })
