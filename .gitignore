@@ -3,3 +3,5 @@ lazy-lock.json
 **/conf.d/local.fish
 **/.bash_local
 **/*.swp
+/tmux/.tmux/plugins/*
+!/tmux/.tmux/plugins/tpm
