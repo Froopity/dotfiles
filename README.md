@@ -2,9 +2,13 @@ Clone with submodules:
 
 ```
 git clone --recurse-submodules <repo>
-```
 
-(or `git submodule update --init` after a plain clone)
+# Submodules won't be automatically pulled again unless you set this
+git config submodule.recurse true
+
+# Or run this
+git submodule update --init --recursive
+```
 
 Install dotfile with
 
@@ -41,9 +45,7 @@ fisher update
 
 `conf.d/local.fish` is gitignored (in any package) and auto-sourced by fish.
 
-<<<<<<< HEAD
 ## git
-
 
 - `.config/git/config` common settings
 - `.local/bin/git-editor` tries nvim then vim
@@ -53,7 +55,6 @@ fisher update
 stow bash git
 ```
 
-=======
 ## ripgrep
 
 ```
@@ -62,7 +63,6 @@ stow ripgrep
 
 Set some default excludes like `.git`, `node_modules`, etc. Requires `RIPGREP_CONFIG_PATH` to be set (done automatically with `fish` or `bash` unit)
 
->>>>>>> d0457b7 (Better rg settings for hidden/gitignored files)
 ## nvim
 
 External tools required:
