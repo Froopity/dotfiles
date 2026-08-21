@@ -35,16 +35,16 @@ return {
     end
 
     local map = vim.keymap.set
-    map('n', '<leader>db', dap.toggle_breakpoint, { desc = 'DAP: Toggle breakpoint' })
-    map('n', '<leader>dc', dap.continue, { desc = 'DAP: Continue' })
-    map('n', '<leader>ds', dap.step_over, { desc = 'DAP: Step over' })
-    map('n', '<leader>di', dap.step_into, { desc = 'DAP: Step into' })
-    map('n', '<leader>do', dap.step_out, { desc = 'DAP: Step out' })
-    map('n', '<leader>dq', dap.terminate, { desc = 'DAP: Terminate' })
-    map('n', '<leader>du', dapui.toggle, { desc = 'DAP: Toggle UI' })
-    map('n', '<leader>dr', dap.repl.toggle, { desc = 'DAP: Toggle REPL' })
-    map('n', '<leader>dl', dap.run_last, { desc = 'DAP: Re-run last' })
-    map('n', '<leader>dB', function()
+    map('n', '<leader>Db', dap.toggle_breakpoint, { desc = 'DAP: Toggle breakpoint' })
+    map('n', '<leader>Dc', dap.continue, { desc = 'DAP: Continue' })
+    map('n', '<leader>Ds', dap.step_over, { desc = 'DAP: Step over' })
+    map('n', '<leader>Di', dap.step_into, { desc = 'DAP: Step into' })
+    map('n', '<leader>Do', dap.step_out, { desc = 'DAP: Step out' })
+    map('n', '<leader>Dq', dap.terminate, { desc = 'DAP: Terminate' })
+    map('n', '<leader>Du', dapui.toggle, { desc = 'DAP: Toggle UI' })
+    map('n', '<leader>Dr', dap.repl.toggle, { desc = 'DAP: Toggle REPL' })
+    map('n', '<leader>Dl', dap.run_last, { desc = 'DAP: Re-run last' })
+    map('n', '<leader>DB', function()
       dap.set_breakpoint(vim.fn.input('Condition: '))
     end, { desc = 'DAP: Conditional breakpoint' })
   end,

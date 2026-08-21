@@ -57,9 +57,16 @@ vim.keymap.set('n', 'H', "<CMD>bprevious<CR>", { desc = "Previous buffer" })
 vim.keymap.set('n', 'L', "<CMD>bnext<CR>", { desc = "Next buffer" })
 
 -- Actions on entire buffer
-vim.keymap.set('n', '<leader>ya', "mqggyG'q", { desc = "Yank entire buffer" })
+vim.keymap.set('n', '<leader>ya', "mqgg\"+yG'q", { desc = "Yank entire buffer to system clipboard" })
 vim.keymap.set('n', '<leader>da', 'gg"_dG', { desc = "Delete entire buffer without yanking" })
 vim.keymap.set('n', '<leader>gqa', "mqgggqG'q", { desc = "Format entire buffer" })
+
+-- System clipboard (explicit; y/d/c/p stay on the local unnamed register)
+vim.keymap.set({ 'n', 'x' }, '<leader>y', '"+y', { desc = 'Yank to system clipboard' })
+vim.keymap.set('n', '<leader>Y', '"+y$', { desc = 'Yank to end of line to system clipboard' })
+vim.keymap.set({ 'n', 'x' }, '<leader>d', '"+d', { desc = 'Delete to system clipboard' })
+vim.keymap.set({ 'n', 'x' }, '<leader>p', '"+p', { desc = 'Paste from system clipboard' })
+vim.keymap.set('n', '<leader>P', '"+P', { desc = 'Paste before from system clipboard' })
 
 -- LSP keymaps
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic error under cursor' })

@@ -7,6 +7,6 @@ return {
     },
   },
   keys = {
-    { '<leader>p', "<cmd>Telescope yank_history<cr>", desc = "Toggle Scratchpad" },
+    { '<leader>fp', "<cmd>Telescope yank_history<cr>", desc = "Telescope yank history" },
   },
 }

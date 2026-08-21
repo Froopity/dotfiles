@@ -2,13 +2,6 @@
 vim.o.number = true
 vim.o.relativenumber = true
 
--- Something to do with system clipboard
-vim.api.nvim_create_autocmd('UIEnter', {
-  callback = function()
-    vim.o.clipboard = 'unnamedplus'
-  end,
-})
-
 -- Searches ignore case unless a capital letter is present
 vim.o.ignorecase = true
 vim.o.smartcase = true
