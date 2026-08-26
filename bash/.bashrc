@@ -150,6 +150,9 @@ alias gb='g branch'
 alias gp='g push'
 alias gpl='g pull'
 
+# Nvim diff
+alias diff='nvim -c "DiffviewOpen"'
+
 config() {
   local dotfiles=~/dotfiles/bash
 

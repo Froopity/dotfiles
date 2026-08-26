@@ -129,6 +129,9 @@ if status is-interactive
     alias gp="g push"
     alias gpl="g pull"
 
+    # Nvim diff view
+    alias diff="nvim -c 'DiffviewOpen'"
+
     abbr --add greptail "stdbuf -o0 grep"
 
     # Directories to always skip in Ctrl-T/Alt-C search (matched by name, not full path).

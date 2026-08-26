@@ -1,6 +1,8 @@
 return {
   'dlyongemallo/diffview-plus.nvim',
   version = "*",
+  event = "VeryLazy",
+  cmd = { "DiffviewOpen" },
   opts = {
     view = {
       -- Configure the layout and behavior of different types of views.
