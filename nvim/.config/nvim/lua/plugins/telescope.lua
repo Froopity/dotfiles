@@ -145,17 +145,18 @@ return {
     local builtin = require('telescope.builtin')
     local menufacture = require('telescope').extensions.menufacture
 
-    vim.keymap.set('n', '<leader>fr', builtin.resume, { desc = 'Telescope session list' })
-    vim.keymap.set('n', '<leader>ff', menufacture.find_files, { desc = 'Telescope find files' })
-    vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
-    vim.keymap.set('n', '<leader>fg', menufacture.live_grep, { desc = 'Telescope live grep' })
     vim.keymap.set('n', '<leader>/', builtin.current_buffer_fuzzy_find, { desc = 'Telescope live buffer fuzzy' })
+    vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
+    vim.keymap.set('n', '<leader>fd', builtin.diagnostics, { desc = 'Telescope diagnostics' })
+    vim.keymap.set('n', '<leader>ff', menufacture.find_files, { desc = 'Telescope find files' })
+    vim.keymap.set('n', '<leader>fg', menufacture.live_grep, { desc = 'Telescope live grep' })
     vim.keymap.set('n', '<leader>fh', git_diff, { desc = 'Telescope diff since main' })
+    vim.keymap.set('n', '<leader>flr', builtin.lsp_references, { desc = 'Telescope LSP references' })
+    vim.keymap.set('n', '<leader>fls', builtin.lsp_document_symbols, { desc = 'Telescope document symbols' })
+    vim.keymap.set('n', '<leader>fo', builtin.oldfiles, { desc = 'Telescope document symbols' })
     vim.keymap.set('n', '<leader>fn', function()
       builtin.find_files({ cwd = vim.fn.expand('~/.config/nvim') })
     end, { desc = 'Telescope find nvim files' })
-    vim.keymap.set('n', '<leader>fd', builtin.diagnostics, { desc = 'Telescope diagnostics' })
-    vim.keymap.set('n', '<leader>flr', builtin.lsp_references, { desc = 'Telescope LSP references' })
-    vim.keymap.set('n', '<leader>fls', builtin.lsp_document_symbols, { desc = 'Telescope document symbols' })
+    vim.keymap.set('n', '<leader>fr', builtin.resume, { desc = 'Telescope session list' })
   end
 }

@@ -94,9 +94,9 @@ if status is-interactive
     end
 
     # Replace ls with eza
-    alias ls='eza -al --color=always --group-directories-first --icons=always'
-    alias la='eza -a --color=always --group-directories-first --icons=always'
-    alias ll='eza -l --color=always --group-directories-first --icons=always'
+    alias ls='eza -al --color=auto --group-directories-first --icons=auto'
+    alias la='eza -a --color=auto --group-directories-first --icons=auto'
+    alias ll='eza -l --color=auto --group-directories-first --icons=auto'
     alias l.="eza -a | grep -e '^\.'"
 
     # Common use
