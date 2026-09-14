@@ -129,6 +129,9 @@ if status is-interactive
     alias gp="g push"
     alias gpl="g pull"
 
+    # Python aliases
+    alias pypl="uv run python"
+
     # Nvim diff view
     alias diff="nvim -c 'DiffviewOpen'"
 

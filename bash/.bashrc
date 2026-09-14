@@ -150,6 +150,9 @@ alias gb='g branch'
 alias gp='g push'
 alias gpl='g pull'
 
+# Python aliases
+alias pypl='uv run python'
+
 # Nvim diff
 alias diff='nvim -c "DiffviewOpen"'
 
