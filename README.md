@@ -72,5 +72,11 @@ ripgrep
 tree-sitter-cli (requires npm)
 ```
 
-Create the language config file by running `:LangSync` in nvim. Uncomment any required languages.
+Create the language config file by running `:LangsSync` in nvim. Uncomment any required languages.
+
+Install the CloudFormation language server with:
+
+```
+nvim/.config/nvim/install-cfn-lsp.sh
+```
 
