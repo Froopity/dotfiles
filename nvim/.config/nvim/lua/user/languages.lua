@@ -62,6 +62,10 @@ return {
     lsp = { "sqlls" },
     filetypes = { "sql" },
   },
+  typescript = {
+    lsp = { "vtsls" },
+    filetypes = { "ts", "js" },
+  },
   yaml = {
     lsp = { "yamlls" },
     filetypes = { "yaml" },
