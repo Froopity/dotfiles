@@ -1,0 +1,14 @@
+return {
+  settings = {
+    typescript = {
+      format = {
+        insertSpaceAfterOpeningAndBeforeClosingNonemptyBrackets = true,
+      },
+    },
+    javascript = {
+      format = {
+        insertSpaceAfterOpeningAndBeforeClosingNonemptyBrackets = true,
+      },
+    },
+  },
+}

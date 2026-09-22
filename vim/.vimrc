@@ -61,3 +61,6 @@ nnoremap <leader>da gg"_dG
 
 " Clear search highlights
 nnoremap <leader><Esc> :nohlsearch<CR>
+
+" Save with sudo perms
+command! -nargs=0 Sw w !sudo tee % > /dev/null

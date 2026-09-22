@@ -32,7 +32,12 @@ end
 -- Run :LangsSync after adding entries to languages.lua so new languages
 -- show up without hand-editing the file.
 function M.sync_local_langs()
-  local names = vim.tbl_keys(registry)
+  -- Re-require so edits to languages.lua earlier in this same session are
+  -- picked up, instead of the copy cached when this module first loaded.
+  package.loaded['user.languages'] = nil
+  local fresh_registry = require('user.languages')
+
+  local names = vim.tbl_keys(fresh_registry)
   table.sort(names)
 
   local lines = {

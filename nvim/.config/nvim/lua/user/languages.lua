@@ -64,7 +64,8 @@ return {
   },
   typescript = {
     lsp = { "vtsls" },
-    filetypes = { "ts", "js" },
+    filetypes = { "typescript", "javascript" },
+    treesitter = { "typescript", "javascript" },
   },
   yaml = {
     lsp = { "yamlls" },
