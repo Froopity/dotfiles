@@ -83,6 +83,31 @@ if status is-interactive
       uv run --frozen lazymanager/lazymanager.py $argv"
     end
 
+    function shellto \
+        --description "Search for running EC2 instance and open shell" \
+        --argument-names account_name instance_name
+
+        if test -z "$account_name"
+            echo "account_name must be provided"
+            exit 1
+        end
+
+        if test -z "$instance_name"
+            echo "instance_name must be provided"
+            exit 1
+        end
+
+        set --local all_instances (aws ec2 describe-instances \
+          --query 'Reservations[*].Instances[*].[Tags[?Key==`Name`].Value|[0], InstanceId, State.Name]' \
+          --output text \
+          --profile onyxtech.$account_name.infrastructure-manager \
+            | awk -v name=$instance_name '$1 ~ name && $3 == "running" {print NR " " $1 " " $2}' \
+            | fzf \
+            | awk '{print $3}' \
+          )
+
+        hc ec2 shell -a $account_name -i $all_instances
+    end
 end
 
 function fish_greeting
