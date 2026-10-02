@@ -75,7 +75,7 @@ vim.keymap.set('n', 'grd', vim.lsp.buf.definition, { desc = 'Go to definition' }
 
 -- Misc
 vim.keymap.set('n', '<leader><ESC>', ':nohlsearch<CR>', { silent = true, desc = 'Remove search highlights' })
-
+vim.keymap.set('n', '<leader>M', ':set filetype=markdown', { silent = true, desc = 'Set filetype to markdown' })
 vim.keymap.set('n', '<leader>wm', [[:%s/\r//g<CR>]], { silent = true, desc = 'Strip ^M from buffer' })
 
 -- Mouse: disable click/drag actions, keep scroll wheel, right click pastes without moving the cursor

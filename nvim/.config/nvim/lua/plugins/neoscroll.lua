@@ -1,5 +1,7 @@
 return {
   "karb94/neoscroll.nvim",
   event = "VeryLazy",
-  opts = {},
+  opts = {
+    duration_multiplier = 0.8
+  },
 }
