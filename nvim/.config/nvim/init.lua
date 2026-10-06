@@ -5,6 +5,7 @@ require("config.commands")
 require("config.keymaps")
 require("config.lazy")
 require("config.options")
+require("config.statusline")
 
 if vim.g.neovide then
   require("config.neovide")
