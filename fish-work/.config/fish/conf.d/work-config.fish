@@ -7,7 +7,6 @@ if status is-interactive
     alias op="op.exe"
     alias subl="subl.exe"
     alias jira="jiratui.exe"
-    alias lg="lazygit.exe"
     alias hc="uv.exe tool run hc"
 
     alias update_aws="cp /mnt/c/Users/Will/.aws/config ~/.aws/config"

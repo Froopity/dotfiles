@@ -14,9 +14,10 @@ return {
       formatters = {
         yamlfix = {
           env = {
-            YAMLFIX_WHITELINES = "2",
+            YAMLFIX_WHITELINES = "1",
             YAMLFIX_SEQUENCE_STYLE = "keep_style",
             YAMLFIX_PRESERVE_QUOTES = "true",
+            YAMLFIX_LINE_LENGTH = "180"
           },
         },
       },
